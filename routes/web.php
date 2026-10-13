@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view("/", "home")->name("home");
+Route::view("/home", "home")->name("home");
+
+Route::get("/test", [TestController::class, "index"]);
+Route::view("/contact", "contact");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
