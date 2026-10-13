@@ -1,3 +1,3 @@
-<div>
+<x-layout title="test">
     {{ $quote }}
-</div>
+</x-layout>
