@@ -4,8 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::view("/", "home")->name("home");
-Route::view("/home", "home")->name("home");
+Route::view("/home", "home")->name("home")->name("home");
 
 Route::get("/test", [TestController::class, "index"]);
 Route::view("/contact", "contact");
