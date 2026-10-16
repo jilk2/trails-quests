@@ -3,5 +3,13 @@
 ]);
 
 <div {{ $attributes->merge(["class" => "card"]) }}>
-    {{ $posts }}
+    @forelse ($posts as $post)
+    <ul>
+    
+    <li> - {{ $post->title }}</li>    
+        
+    </ul>    
+    @empty
+        <p>Er zijn geen posts gevonden</p>
+    @endforelse
 </div>
