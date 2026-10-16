@@ -6,8 +6,8 @@ use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::view("/", "home")->name("home");
-Route::view("/home", "home")->name("home")->name("home");
+Route::view("/", "index")->name("home");
+Route::view("/home", "index")->name("home");
 
 Route::resource("posts", PostController::class);
 
