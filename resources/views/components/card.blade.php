@@ -1,6 +1,6 @@
 @props([
     'posts'
-]);
+])
 
 <div {{ $attributes->merge(["class" => "card"]) }}>
     @forelse ($posts as $post)
