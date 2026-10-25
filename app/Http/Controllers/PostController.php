@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //form handling hier
     }
 
     /**
@@ -38,7 +38,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        Post::find($post);
+        return view("posts.show", compact("post"));
     }
 
     /**
