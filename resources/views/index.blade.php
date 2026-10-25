@@ -1,4 +1,4 @@
-<x-app-layout title="Home">
+<x-layout title="Home">
 
     @auth
     <h1 class="text-white">Welcome {{ Auth::user()->name }}</h1>
@@ -9,4 +9,4 @@
             This site name is kind of a misleading thing. Because you can also ask for builds from other people or post your
             own character builds.
         </p>
-</x-app-layout>
+</x-layout>
