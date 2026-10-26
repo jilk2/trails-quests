@@ -23,8 +23,7 @@ class PostFactory extends Factory
             'title' => fake()->name(),
             'description' => fake()->text(),
             'tags' => fake()->text(),
-            'active' => 1,
-            "image_name" => fake()->text()
+            'active' => 1
         ];
     }
 }
