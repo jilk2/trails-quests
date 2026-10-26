@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text("description");
             $table->string("tags");
             $table->boolean("active")->default(1);
-            $table->string("image_name")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
