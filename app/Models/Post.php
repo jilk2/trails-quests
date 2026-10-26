@@ -18,7 +18,6 @@ class Post extends Model
         'description',
         'tags',
         'active',
-        'image_name',
     ];
 
     public function comments(): HasMany {
@@ -27,5 +26,10 @@ class Post extends Model
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
+    }
+
+        public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
