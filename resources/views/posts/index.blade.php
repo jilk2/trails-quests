@@ -1,4 +1,4 @@
-<x-layout title="test">
+<x-layout title="posts">
     @auth
         <a href="{{ route("posts.create") }}">nieuwe post</a>
     @endauth

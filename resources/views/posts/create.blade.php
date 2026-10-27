@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="nieuwe post">
     <h1>Create new post</h1>
     <form action="{{ route("posts.store") }}" method="post">
         @csrf

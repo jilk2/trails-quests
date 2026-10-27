@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="post">
     {{ $post->id }}
     {{ $post->title }}
     @foreach ($post->comments as $comment)
