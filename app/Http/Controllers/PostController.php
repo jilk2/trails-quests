@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,7 +23,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+
+        return view('posts.create', ["tags" => Tag::all()]);
     }
 
     /**
@@ -30,7 +32,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //form handling hier
+        $request->validate([
+            "title" => "required|min:5",
+            "description" => 'required',
+            "tags" => "required|array",
+            "tags.*" => "exists:tags,id",
+        ]);
+
+        $post = Post::create([  
+            "user_id" => $request->user()->id,
+            "title" => $request->input("title"),
+            "description" => $request->input("description"),
+        ]);
+
+        $post->tags()->sync($request->input("tags"));
+
+        return redirect()->route("posts.show", $post);
     }
 
     /**
@@ -38,7 +55,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        Post::find($post);
         return view("posts.show", compact("post"));
     }
 
