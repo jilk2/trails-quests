@@ -18,12 +18,14 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'jilvano',
+            'email' => '1099514@hr.nl',
+            'admin' => 1
         ]);
     
         $this->call(PostSeeder::class);
         $this->call(CommentSeeder::class);
+        $this->call(TagSeeder::class);
 
     }
 }
