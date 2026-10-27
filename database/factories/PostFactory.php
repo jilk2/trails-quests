@@ -22,7 +22,6 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
             'title' => fake()->name(),
             'description' => fake()->text(),
-            'tags' => fake()->text(),
             'active' => 1
         ];
     }
