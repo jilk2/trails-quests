@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-
+        $this->authorize('create', Post::class);
         return view('posts.create', ["tags" => Tag::all()]);
     }
 
@@ -32,6 +32,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+            $this->authorize('create', Post::class);
+
         $request->validate([
             "title" => "required|min:5",
             "description" => 'required',
