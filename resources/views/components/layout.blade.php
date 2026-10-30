@@ -13,7 +13,9 @@
 
 <body class="">
 
-    <div class="bg-[#FDFDFC] text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col m-0">
+    <div
+        class="bg-[#FDFDFC] bg-cover bg-center bg-fixed text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col m-0"
+        style="background-image: linear-gradient(rgba(253, 253, 252, 0.28), rgba(253, 253, 252, 0.28)), url('/images/background.png');">
         <header class="w-full lg:min-w-4xl  text-sm mb-6 not-has-[nav]:hidden">
             @if (Route::has('login'))
                 <nav
