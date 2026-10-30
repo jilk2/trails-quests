@@ -28,10 +28,12 @@ class PostPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        return Comment::where('user_id', $user->id)->count() >= 5;
-    }
+        return Comment::where('user_id', $user->id)->count() >= 5 || $user->admin === true
+        ? Response::allow()
+        : Response::deny("Je moet minstens 5 comments hebben geplaatst, voordat je een post mag maken");
+        }
 
     /**
      * Determine whether the user can update the model.
