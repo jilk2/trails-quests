@@ -33,7 +33,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-            $this->authorize('create', Post::class);
+        $this->authorize('create', Post::class);
 
         $request->validate([
             "title" => "required|min:5",
