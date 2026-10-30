@@ -38,6 +38,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if (Auth::user()->admin === true)
+                            <x-dropdown-link :href="route('admin.index')">
+                                {{ __('Admin dashboard') }}
+                            </x-dropdown-link>
+                        @endif
                         <x-dropdown-link :href="route('index')">
                             {{ ("home") }}
                         </x-dropdown-link>
