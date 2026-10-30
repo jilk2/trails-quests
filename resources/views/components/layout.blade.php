@@ -11,12 +11,12 @@
     @vite(["resources/css/app.css", "resources/js/app.js"])
 </head>
 
-<body class="">
+<body>
 
     <div
         class="bg-[#FDFDFC] bg-cover bg-center bg-fixed text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col m-0"
         style="background-image: linear-gradient(rgba(253, 253, 252, 0.28), rgba(253, 253, 252, 0.28)), url('/images/background.png');">
-        <header class="w-full lg:min-w-4xl  text-sm mb-6 not-has-[nav]:hidden">
+        <header class="w-full lg:min-w- 4xl text-sm mb-3 not-has-[nav]:hidden sticky top-0">
             @if (Route::has('login'))
                 <nav
                     class="lg:min-w-4xl py-4 flex items-center justify-end gap-4 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 text-white">
