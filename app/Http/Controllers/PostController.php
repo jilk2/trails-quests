@@ -19,7 +19,7 @@ class PostController extends Controller
                         ->orWhere('description', 'like', "%{$search}%");
                 });
             })->when($request->tags, function ($query, $tags) {
-                $query->whereHas('tags', function ($query) use ($tags) {
+                $query->whereHas('tag', function ($query) use ($tags) {
                     $query->whereIn('tags.name', (array) $tags);
                 });
             })->paginate(9);
@@ -48,17 +48,15 @@ class PostController extends Controller
         $request->validate([
             "title" => "required|min:5",
             "description" => 'required',
-            "tags" => "required|array",
-            "tags.*" => "exists:tags,id",
+            "tag_id" => "required|exists:tags,id",
         ]);
 
         $post = Post::create([  
             "user_id" => $request->user()->id,
+            "tag_id" => $request->input("tag_id"),
             "title" => $request->input("title"),
             "description" => $request->input("description"),
         ]);
-
-        $post->tags()->sync($request->input("tags"));
 
         return redirect()->route("posts.show", $post);
     }
@@ -76,8 +74,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $this->authorize('update', Post::class);
-    }
+        $this->authorize('update', $post);
+        return view("posts.edit", compact("post"));
+        }
 
     /**
      * Update the specified resource in storage.
