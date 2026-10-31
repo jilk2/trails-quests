@@ -40,7 +40,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): Response
     {
-        return $post->user_id === $user->id
+        return $post->user_id === $user->id || $user->admin == true
         ? Response::allow()
         : Response::deny("you are not the owner of this item");
     }
