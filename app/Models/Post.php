@@ -14,6 +14,7 @@ class Post extends Model
     use SoftDeletes;
     protected $fillable = [
         'user_id',
+        'tag_id',
         'title',
         'description',
         'tags',
@@ -28,8 +29,8 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-        public function tags()
+        public function tag(): BelongsTo
     {
-        return $this->belongsToMany(Tag::class, 'post_tags');
+        return $this->belongsTo(Tag::class);
     }
 }
