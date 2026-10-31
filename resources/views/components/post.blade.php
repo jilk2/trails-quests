@@ -2,7 +2,11 @@
     'post'
 ])
 
-    <div {{ $attributes->merge(["class" => "card flex h-40 w-full max-w-xl min-w-0 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"]) }}>
-        <h2 class="break-words text-xl font-semibold text-white">{{ $post->title }}</h2>
-        <p class="text-ml font-semibold text-white">{{ $post->description }}</p>
-    </div>
+<div {{ $attributes->merge(['class' => 'card mb-10 mx-auto min-h-96 w-full overflow-hidden rounded-xl bg-[#1F2937] p-8 text-white shadow-lg text-center']) }}>
+    <h2 class="break-words text-2xl font-bold tracking-tight">
+        {{ $post->title }}
+    </h2>
+    <p class="mt-4 whitespace-pre-line break-words leading-7 text-slate-200">
+        {{ $post->description }}
+    </p>
+</div>
