@@ -85,13 +85,13 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        $request->validate([
+        $validate = $request->validate([
             'title' => 'required|min:5',
             'description' => 'required',
             'tag_id' => 'required|exists:tags,id',
         ]);
 
-        $post->update();
+        $post->update($validate);
 
         return redirect()->route('posts.show', $post);
     }
