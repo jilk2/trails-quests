@@ -1,6 +1,6 @@
 <x-layout title="post">
     <div class="mx-auto max-w-3xl py-10">
-        <div class="mb-8 flex flex-wrap items-center gap-4">
+        <div class="mb-8 flex items-center gap-4">
             <a href="{{ route('posts.index') }}"
                 class="inline-flex items-center gap-2 text-sm font-semibold text-black transition hover:text-slate-600">
                 Terug naar posts
@@ -12,6 +12,19 @@
                         class="inline-flex rounded-lg bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-cyan-700">
                         Post bewerken
                     </a>
+                @endif
+            @endauth
+
+            @auth
+                @if (Auth::user()->id === $post->user_id)
+                    <form action="{{ route('posts.destroy', $post) }}" method="post" class="m-0">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="inline-flex rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700">
+                            Post verwijderen
+                        </button>
+                    </form>
                 @endif
             @endauth
         </div>
@@ -43,17 +56,6 @@
             @endforelse
         </div>
 
-        @auth
-            @if (Auth::user()->id === $post->user_id)
-                <form action="{{ route('posts.destroy', $post) }}" method="post" class="mt-8 flex justify-end">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                        class="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700">
-                        Post verwijderen
-                    </button>
-                </form>
-            @endif
-        @endauth
+
     </div>
 </x-layout>
