@@ -13,7 +13,7 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (['tag 1', 'tag 2', 'tag 3'] as $name) {
+        foreach (['quest', 'tips', 'bossfights'] as $name) {
             Tag::factory()->create([
                 'name' => $name,
             ]);
