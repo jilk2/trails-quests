@@ -1,10 +1,20 @@
 <x-layout title="post">
     <div class="mx-auto max-w-3xl py-10">
-        <a href="{{ route('posts.index') }}"
-            class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-black">
-            Terug naar posts
-        </a>
+        <div class="mb-8 flex flex-wrap items-center gap-4">
+            <a href="{{ route('posts.index') }}"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-black transition hover:text-slate-600">
+                Terug naar posts
+            </a>
 
+            @auth
+                @if (Auth::user()->id === $post->user_id)
+                    <a href="{{ route('posts.edit', $post) }}"
+                        class="inline-flex rounded-lg bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-cyan-700">
+                        Post bewerken
+                    </a>
+                @endif
+            @endauth
+        </div>
         <x-post :post="$post" />
 
         <div class="mb-6 flex items-center justify-between border-b border-black/20 pb-4">
