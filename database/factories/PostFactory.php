@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -21,6 +22,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
+            'tag_id' => Tag::inRandomOrder()->value('id'),
             'title' => fake()->name(),
             'description' => fake()->text(),
             'active' => 1
@@ -31,44 +33,54 @@ class PostFactory extends Factory
     {
         return $this->state(new Sequence(
             [
-                'title' => 'De eerste post',
-                'description' => 'Beschrijving van de eerste post.',
+                'tag_id' => 1,
+                'title' => 'De zoektocht naar de verdwenen documenten',
+                'description' => 'In Trails in the Sky Second Chapter volgen Estelle en Joshua een spoor van verdwenen documenten tijdens een optionele quest.',
             ],
             [
-                'title' => 'Wandelen in de bergen',
-                'description' => 'Een mooie wandeling door de bergen.',
+                'tag_id' => 2,
+                'title' => 'Handige tips voor het plannen van quests',
+                'description' => 'Plan je quests in Trails from Zero goed, zodat je geen brieven, verborgen doelen of beloningen mist.',
             ],
             [
-                'title' => 'Een dag aan zee',
-                'description' => 'Mijn ervaringen tijdens een dag aan zee.',
+                'tag_id' => 3,
+                'title' => 'De strijd tegen Loewe',
+                'description' => 'Loewe is een van de zwaarste tegenstanders in Trails in the Sky the 3rd. Let vooral op zijn hoge snelheid en sterke area-aanvallen.',
             ],
             [
-                'title' => 'Tips voor beginners',
-                'description' => 'Handige tips voor mensen die net beginnen.',
+                'tag_id' => 1,
+                'title' => 'Een nieuwe opdracht in Crossbell',
+                'description' => 'Lloyd en zijn team onderzoeken een mysterie in Trails from Zero dat begint als een eenvoudige opdracht voor de Special Support Section.',
             ],
             [
-                'title' => 'Mijn favoriete route',
-                'description' => 'Dit is momenteel mijn favoriete route.',
+                'tag_id' => 2,
+                'title' => 'Kies je party slim in Trails of Cold Steel',
+                'description' => 'Combineer personages met verschillende quartz en crafts, zodat je tijdens moeilijke gevechten altijd een goede rolverdeling hebt.',
             ],
             [
-                'title' => 'Een bijzondere plek',
-                'description' => 'Een plek die zeker de moeite waard is om te bezoeken.',
+                'tag_id' => 3,
+                'title' => 'De aanval op de cryptid',
+                'description' => 'Bereid je goed voor op een cryptid-gevecht in Trails through Daybreak. Gebruik buffs en houd genoeg healing-items bij de hand.',
             ],
             [
-                'title' => 'Wat neem je mee?',
-                'description' => 'Een overzicht van spullen die handig zijn onderweg.',
+                'tag_id' => 1,
+                'title' => 'De vermiste kat van Liberl',
+                'description' => 'Een korte maar leuke side quest in Trails in the Sky waarin je in de stad op zoek gaat naar een vermiste kat.',
             ],
             [
-                'title' => 'Een rustig weekend',
-                'description' => 'Een verslag van een rustig weekend in de natuur.',
+                'tag_id' => 2,
+                'title' => 'Gebruik arts en crafts effectief',
+                'description' => 'Een beginnerstip voor de Trails-serie: wissel gewone aanvallen af met arts en crafts en let goed op de delay van je acties.',
             ],
             [
-                'title' => 'Mijn beste avontuur',
-                'description' => 'Het avontuur dat mij het meest is bijgebleven.',
+                'tag_id' => 3,
+                'title' => 'De eindbaas van Trails from Zero',
+                'description' => 'Neem voor het eindgevecht voldoende EP-herstel mee en zorg dat je party tegen verschillende aanvalstypes bestand is.',
             ],
             [
-                'title' => 'Terugblik op de reis',
-                'description' => 'Een korte terugblik op een geslaagde reis.',
+                'tag_id' => 1,
+                'title' => 'Een onderzoek in Calvard',
+                'description' => 'In Trails through Daybreak begint een onderzoek in Edith als een gewone opdracht, maar al snel raakt Van Arkride betrokken bij een groter conflict.',
             ],
         ));
     }
