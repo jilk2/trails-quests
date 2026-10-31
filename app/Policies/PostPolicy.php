@@ -48,9 +48,11 @@ class PostPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Post $post): bool
+    public function delete(User $user, Post $post): Response
     {
-        return false;
+        return $post->user_id === $user->id || $user->admin == true
+        ? Response::allow()
+        : Response::deny("you are not the owner of this item");
     }
 
     /**
