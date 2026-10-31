@@ -75,15 +75,25 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
-        return view("posts.edit", compact("post"));
-        }
+        return view('posts.edit', ['post' => $post,'tags' => Tag::all(),]);
+    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $request->validate([
+            'title' => 'required|min:5',
+            'description' => 'required',
+            'tag_id' => 'required|exists:tags,id',
+        ]);
+
+        $post->update();
+
+        return redirect()->route('posts.show', $post);
     }
 
     /**
