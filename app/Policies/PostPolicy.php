@@ -38,9 +38,11 @@ class PostPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Post $post): bool
+    public function update(User $user, Post $post): Response
     {
-        return false;
+        return $post->user_id === $user->id
+        ? Response::allow()
+        : Response::deny("you are not the owner of this item");
     }
 
     /**
