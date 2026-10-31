@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureUserIsAdmin;
@@ -12,6 +13,7 @@ Route::view("/", "index")->name("index");
 Route::view("/home", "index")->name("home");
 
 Route::resource("posts", PostController::class);
+Route::resource("comments", CommentController::class)->middleware('auth');
 
 // Route::get("/test", [TestController::class, "index"]);
 // Route::view("/contact", "contact");
