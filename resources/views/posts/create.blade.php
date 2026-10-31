@@ -20,8 +20,8 @@
         </div>
 
         <div>
-            <label for="tags">Tags</label>
-            <select name="tags[]" id="tags" multiple>
+            <label for="tag_id">Tag</label>
+            <select name="tag_id" id="tag_id">
                 @foreach ($tags as $tag)
                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                 @endforeach
