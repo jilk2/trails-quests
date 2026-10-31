@@ -13,9 +13,7 @@
                         Post bewerken
                     </a>
                 @endif
-            @endauth
 
-            @auth
                 @if (Auth::user()->id === $post->user_id)
                     <form action="{{ route('posts.destroy', $post) }}" method="post" class="m-0">
                         @csrf
