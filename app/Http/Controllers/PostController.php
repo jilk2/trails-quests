@@ -18,9 +18,9 @@ class PostController extends Controller
                     $query->where('title', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%");
                 });
-            })->when($request->tags, function ($query, $tags) {
-                $query->whereHas('tag', function ($query) use ($tags) {
-                    $query->whereIn('tags.name', (array) $tags);
+            })->when($request->input('tag'), function ($query, $tag) {
+                $query->whereHas('tag', function ($query) use ($tag) {
+                    $query->where('tags.name', $tag);
                 });
             })->paginate(9);
 
