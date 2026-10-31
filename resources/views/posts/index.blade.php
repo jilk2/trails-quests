@@ -12,7 +12,7 @@
         @endauth
     </div>
 
-    <div class="">
+    <div>
         <form class="flex gap-4 mb-5" action="{{ route('posts.index') }}" method="get">
             <div class="flex gap-2">
                 <span class="mb-2 block">tags</span>
