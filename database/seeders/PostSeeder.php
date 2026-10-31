@@ -14,14 +14,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $tags = Tag::all();
-        $posts = Post::factory(10)->manual()->create();
-
-        foreach ($posts as $post) {
-            $post->tags()->attach(
-                $tags->random(random_int(1, $tags->count()))
-            );
-        }
+        Post::factory(10)->manual()->create();
 
     }
 }
