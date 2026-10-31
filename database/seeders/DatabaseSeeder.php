@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
             'admin' => 1
         ]);
     
+        $this->call(TagSeeder::class);
         $this->call(PostSeeder::class);
         $this->call(CommentSeeder::class);
-        $this->call(TagSeeder::class);
 
     }
 }
