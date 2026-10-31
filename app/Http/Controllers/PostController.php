@@ -11,11 +11,21 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        return view("posts.index", ["data" => Post::withCount('comments')->get()]);
+        $posts = Post::withCount('comments')->when($request->input('search-term'), function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%");
+                });
+            })->when($request->tags, function ($query, $tags) {
+                $query->whereHas('tags', function ($query) use ($tags) {
+                    $query->whereIn('tags.name', (array) $tags);
+                });
+            })->paginate(9);
 
+        return view('posts.index', ['data' => $posts, 'tags' => Tag::all(),
+        ]);
     }
 
     /**
@@ -66,7 +76,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', Post::class);
     }
 
     /**
