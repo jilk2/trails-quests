@@ -30,7 +30,6 @@
                                     <div class="flex justify-end gap-2">
                                         <form action="{{ route('admin.update', $post) }}" method="post">
                                             @csrf
-                                            @method("PATCH")
                                             <button type="submit" name="active" class="rounded-md bg-cyan-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-cyan-700">
                                                 @if ($post->active == 1)
                                                     Actief
