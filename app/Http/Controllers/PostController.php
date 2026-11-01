@@ -68,7 +68,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $this->authorize("view", $post);
+        abort_unless($post->active, 404);
+
         return view("posts.show", compact("post"));
     }
 
