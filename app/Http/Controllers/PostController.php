@@ -13,7 +13,9 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::withCount('comments')->when($request->input('search-term'), function ($query, $search) {
+        $posts = Post::where('active', 1)
+            ->withCount('comments')
+            ->when($request->input('search-term'), function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('title', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%");
