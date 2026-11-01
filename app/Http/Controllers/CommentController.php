@@ -43,7 +43,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -51,7 +51,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+        $validated = $request->validate([
+            'comment' => 'required|string|min:2',
+        ]);
+
+        $comment->update($validated);
+
+        return redirect()->route('posts.show', $comment->post_id);
     }
 
     /**
@@ -59,6 +66,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $this->authorize('delete', $comment);
+        $comment->delete();
+        return redirect()->route('posts.show', $comment->post_id);
     }
 }
