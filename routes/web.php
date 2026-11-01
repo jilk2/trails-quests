@@ -24,7 +24,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', EnsureUserIsAdmin::class])->group(function () {
-    Route::resource('admin', AdminController::class);
+    Route::get('/admin/posts', [AdminController::class, 'index'])->name('admin.index');
+    Route::patch('/admin/posts/{post}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/posts/{post}', [AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
 Route::middleware('auth')->group(function () {
