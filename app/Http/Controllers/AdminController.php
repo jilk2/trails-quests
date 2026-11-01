@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,7 +12,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view("admin.index");
+        return view('admin.index', [
+            'posts' => Post::with(['user', 'tag'])->withCount('comments')->paginate(6),
+        ]);
     }
 
     /**
@@ -49,16 +52,26 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        if ($post->active == 1) {
+            $post->active = 0;
+        } else {
+            $post->active = 1;
+        }
+
+        $post->save();
+
+        return redirect()->route('admin.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin.index');
     }
 }
