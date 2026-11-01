@@ -1,8 +1,7 @@
 <x-layout title="nieuwe post">
     <div class="mx-auto max-w-2xl py-10">
         <a href="{{ route('posts.index') }}"
-            class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition hover:text-slate-900">
-            &larr;
+            class="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-black transition hover:text-slate-900">
             Terug naar posts
         </a>
 
