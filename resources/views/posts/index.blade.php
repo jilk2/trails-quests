@@ -13,26 +13,32 @@
     </div>
 
     <div>
-        <form class="flex gap-4 mb-5" action="{{ route('posts.index') }}" method="get">
-            <div class="flex gap-2">
-                <span class="mb-2 block">tag</span>
-                <div class="flex flex-wrap gap-2">
-                    @foreach ($tags as $tag)
-                        <a href="{{ route('posts.index', ['tag' => $tag->name, 'search-term' => request('search-term')]) }}"
-                            class="rounded-md border px-3 py-1 text-sm transition hover:bg-slate-100 {{ request('tag') === $tag->name ? 'border-slate-900 bg-slate-900 text-white' : 'border-slate-300 text-slate-700' }}">
-                            {{ $tag->name }}
-                        </a>
-                    @endforeach
-                </div>
+        <form class="flex flex-nowrap items-center gap-4 mb-5" action="{{ route('posts.index') }}" method="get">
+
+            <div class="flex flex-nowrap items-center gap-2 whitespace-nowrap">
+                <span>tag</span>
+
+                @foreach ($tags as $tag)
+                                <a href="{{ route('posts.index', [
+                        'tag' => $tag->name,
+                        'search-term' => request('search-term')
+                    ]) }}"
+                                    class="inline-flex whitespace-nowrap rounded-md border bg-slate-400 px-3 py-1 text-sm transition hover:bg-slate-500">
+                                    {{ $tag->name }}
+                                </a>
+                @endforeach
             </div>
-            <div>
+
+            <div class="flex items-center gap-2 whitespace-nowrap">
                 <label for="search-term">search</label>
                 <input type="text" name="search-term" id="search-term" value="{{ request('search-term') }}">
-                @if (request('tag'))
-                    <input type="hidden" name="tag" value="{{ request('tag') }}">
-                @endif
             </div>
-            <button type="submit">zoeken</button>
+
+            <button
+                class="inline-flex whitespace-nowrap rounded-lg bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-cyan-700"
+                type="submit">
+                zoeken
+            </button>
         </form>
     </div>
     <div class="grid grid-cols-3 gap-6">
